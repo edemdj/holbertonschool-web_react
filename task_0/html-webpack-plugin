@@ -1,0 +1,28 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './js/main.ts', // Chemin d'entrée de votre fichier TypeScript
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,  // Pour tous les fichiers .ts
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.ts', '.js']  // Résolution des extensions
+  },
+  output: {
+    filename: 'bundle.js', // Le fichier compilé
+    path: path.resolve(__dirname, 'dist') // Répertoire de sortie
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html', // Assurez-vous que ce fichier existe
+    }),
+  ],
+  mode: 'development'
+};
